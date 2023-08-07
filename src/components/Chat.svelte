@@ -11,6 +11,7 @@
         message: string
         channel: string
         from: string
+        userColor: string
         alternateBgc: boolean
     }
 
@@ -28,6 +29,7 @@
                 message: "Connected to service!",
                 channel: "System",
                 from: "",
+                userColor: "",
                 alternateBgc: false
             })
             
@@ -59,7 +61,7 @@
     { #each messages as message}
     <div class={ message.alternateBgc ? "alternate-bg message" : "message" }>
         <span class="channel">#{ message.channel }</span>
-        <strong>{ message.from }:</strong> { message.message }
+        <strong style="color: { message.userColor }">{ message.from }</strong>: { message.message }
     </div>
     {/each}
 </div>
