@@ -17,6 +17,7 @@
     let messages: Message[] = []
     let ws: WebSocket | undefined;
     let alternateBgc = false;
+    const MAX_MESSEAGES = 15;
 
     onMount(() => {
         ws = new WebSocket(firehoseDemoUrl)
@@ -39,6 +40,9 @@
                 alternateBgc
             };
             alternateBgc = !alternateBgc
+            if (messages.length >= MAX_MESSEAGES) {
+                messages.splice(messages.length-1,1);
+            }
             messages.unshift(message)
             messages = messages;
         })
