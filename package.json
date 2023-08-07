@@ -1,20 +1,29 @@
 {
-  "name": "",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/svelte": "^3.1.0",
-    "astro": "^2.10.1",
-    "svelte": "^4.1.2"
-  },
-  "devDependencies": {
-    "sass": "^1.64.2"
-  }
+    "name": "firehose-live-site",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "lint": "eslint .",
+        "lint:watch": "nodemon -e ts,json --exec eslint .",
+        "lint:fix": "eslint --fix .",
+        "format": "prettier . -w",
+        "format:full": "npm run format && npm run lint:fix"
+    },
+    "dependencies": {
+        "@astrojs/svelte": "^3.1.0",
+        "astro": "^2.10.1",
+        "svelte": "^4.1.2"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^6.2.1",
+        "@typescript-eslint/parser": "^6.2.1",
+        "eslint": "^8.46.0",
+        "prettier": "^3.0.1",
+        "sass": "^1.64.2"
+    }
 }
