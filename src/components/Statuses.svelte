@@ -39,28 +39,30 @@
         { #if error }
             <span class="error">There was an error connecting with the status service</span>
         { :else }
-            { #each statuses as status}
-                <div class="status-card">
-                    <div class="name">
-                        {status.name}
+            <div class="status-cards">
+                { #each statuses as status}
+                    <div class="status-card">
+                        <div class="name">
+                            {status.name}
 
-                        <span class={status.error ? "indicator error": "indicator online"}>⬤</span>
+                            <span class={status.error ? "indicator error": "indicator online"}>⬤</span>
+                        </div>
+                        <div class="data">
+                            { #if status.health}
+                                Uptime: {Math.round(status.health.uptimeMs/1000)}s
+                                <br>
+                                Channels: {status.health.channels}
+                                <br>
+                                Messages/s: {status.health.messagesPerSecond}
+                                <br>
+                                Total Messages: {status.health.totalMessages}
+                            { :else }
+                                <span class="error">Cannot get status</span>
+                            { /if }
+                        </div>
                     </div>
-                    <div class="data">
-                        { #if status.health}
-                            Uptime: {Math.round(status.health.uptimeMs/1000)}s
-                            <br>
-                            Channels: {status.health.channels}
-                            <br>
-                            Messages/s: {status.health.messagesPerSecond}
-                            <br>
-                            Total Messages: {status.health.totalMessages}
-                        { :else }
-                            <span class="error">Cannot get status</span>
-                        { /if }
-                    </div>
-                </div>
-            {/each }
+                {/each }
+            </div>
         { /if }
     { :else }
         Loading...
@@ -73,13 +75,22 @@
         min-height: 150px;
     }
 
-    .status-card {
-        padding: 20px;
-        background-color: #00000041;
-        border-radius: 10px;
+    .status-cards {
+        max-width: 70vw;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 260px);
+        gap: 10px;
 
-        .data {
-            color: rgb(170, 170, 170);
+        .status-card {
+            min-width: 80px;
+            min-height: 80px;
+            padding: 20px;
+            background-color: #00000041;
+            border-radius: 10px;
+
+            .data {
+                color: rgb(170, 170, 170);
+            }
         }
     }
 
