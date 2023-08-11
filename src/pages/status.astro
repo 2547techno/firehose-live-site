@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Statuses from '../components/Statuses.svelte';
+import Button from '../components/Button.astro';
+---
+
+<Layout title="Twitch Live Firehose Status">
+    <main>
+        <div class="title">
+            <h1>Status Page</h1>
+            <p>Check the current status of firehose services</p>
+        </div>
+        <div class="statuses">
+            <Statuses client:load/>
+        </div>
+        <Button text="Back To Home" href="/">
+    </main>
+</Layout>
+
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title {
+        margin: 70px;
+        text-align: center;
+    }
+
+    .statuses {
+        margin: 20px;
+    }
+</style>
