@@ -1,6 +1,10 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import dayjs from "dayjs";
+    import relativeTime from "dayjs/plugin/relativeTime";
     const firehoseStatusUrl = new URL(import.meta.env.PUBLIC_FIREHOSE_STATUS_URL)
+
+    dayjs.extend(relativeTime)
 
     type HealthData = {
         uptimeMs: number;
@@ -49,7 +53,7 @@
                         </div>
                         <div class="data">
                             { #if status.health}
-                                Uptime: {Math.round(status.health.uptimeMs/1000)}s
+                                Uptime: {dayjs().from(dayjs(new Date().getTime()-status.health.uptimeMs), true)}
                                 <br>
                                 Channels: {status.health.channels}
                                 <br>
