@@ -36,6 +36,20 @@
         statuses = json;
         loading = false;
     })
+
+    function prettifyTotalMessages(totalMessages: number) {
+        let num = totalMessages;
+        let word = "";
+        if (totalMessages >= 1_000_000_000) {
+            num = totalMessages / 1_000_000_000;
+            word = "Billion";
+        } else if (totalMessages >= 1_000_000) {
+            num = totalMessages / 1_000_000;
+            word = "Million";
+        }
+        
+        return `${Number(num.toPrecision(3)).toLocaleString()} ${word}`;
+    }
 </script>
 
 <div id="app">
@@ -59,7 +73,7 @@
                                 <br>
                                 Messages/s: {status.health.messagesPerSecond}
                                 <br>
-                                Total Messages: {status.health.totalMessages}
+                                Total Messages: {prettifyTotalMessages(status.health.totalMessages)}
                             { :else }
                                 <span class="error">Cannot get status</span>
                             { /if }
