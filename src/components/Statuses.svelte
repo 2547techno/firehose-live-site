@@ -69,9 +69,9 @@
                             { #if status.health}
                                 Uptime: {dayjs().from(dayjs(new Date().getTime()-status.health.uptimeMs), true)}
                                 <br>
-                                Channels: {status.health.channels}
+                                Channels: {status.health.channels.toLocaleString()}
                                 <br>
-                                Messages/s: {status.health.messagesPerSecond}
+                                Messages/s: {status.health.messagesPerSecond.toLocaleString()}
                                 <br>
                                 Total Messages: {prettifyTotalMessages(status.health.totalMessages)}
                             { :else }
